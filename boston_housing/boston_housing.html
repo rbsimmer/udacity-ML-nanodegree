@@ -11779,7 +11779,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11849,23 +11849,23 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Median price of the data</span>
 <span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">prices</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="k">print</span> <span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -11892,7 +11892,7 @@ Minimum price: $105,000.00
 Maximum price: $1,024,800.00
 Mean price: $454,342.94
 Median price $438,900.00
-Standard deviation of prices: $165,340.28
+Standard deviation of prices: $165,171.13
 </pre>
 </div>
 </div>
@@ -11960,7 +11960,7 @@ Standard deviation of prices: $165,340.28
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;r2_score&#39;</span>
@@ -12025,7 +12025,7 @@ Standard deviation of prices: $165,340.28
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Calculate the performance of this model</span>
@@ -12085,7 +12085,7 @@ Standard deviation of prices: $165,340.28
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;train_test_split&#39;</span>
@@ -13255,7 +13255,7 @@ ZAAAAABJRU5ErkJggg==
 <p><strong>Answer: </strong></p>
 <p>Max-Depth = 6</p>
 <p>As the training set increases in size, the Training Score increases until it seems to plateau around 200 data points. The Testing Score slowly converges to roughly the same Score as the Training Score.</p>
-<p>Having more training points would benefit this model as the testing and training scores have not completely converged at an overall performance score. This large gap signifies more data may be necessary.</p>
+<p>Having more training points would NOT benefit this model. The large gap between the two scores indicates the model is unable to generalize its predictions to the larger population. High sensitivity to the training set is also known as overfitting, and generally occurs when either the model is too complex or when we do not have enough data to support it. The training and testing scores converge towards an overall high performance score as the number of data points is increased, but there is no further convergence beyond 200 data points. As increasing the number of data points does not improve the model, it must be too complex.</p>
 <p>The learning curves are converged to a value of approximately [0.8 - 0.9].</p>
 
 </div>
@@ -13875,7 +13875,7 @@ Z4wxplWxxGeMMaZVscRnjDGmVfn/UoHuejaQH3AAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;make_scorer&#39;, &#39;DecisionTreeRegressor&#39;, and &#39;GridSearchCV&#39;</span>
@@ -13900,7 +13900,7 @@ Z4wxplWxxGeMMaZVscRnjDGmVfn/UoHuejaQH3AAAAAASUVORK5CYII=
     <span class="n">scoring_fnc</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">performance_metric</span><span class="p">)</span>
 
     <span class="c1"># TODO: Create the grid search object</span>
-    <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">regressor</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_fnc</span><span class="p">)</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">regressor</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">scoring_fnc</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv_sets</span><span class="p">)</span>
 
     <span class="c1"># Fit the grid search object to the data to compute the optimal model</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -13937,7 +13937,7 @@ Z4wxplWxxGeMMaZVscRnjDGmVfn/UoHuejaQH3AAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Fit the training data to the model using grid search</span>
@@ -14022,7 +14022,7 @@ Z4wxplWxxGeMMaZVscRnjDGmVfn/UoHuejaQH3AAAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Produce a matrix for client data</span>
@@ -14062,11 +14062,13 @@ Predicted selling price for Client 3&#39;s home: $942,666.67
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Recommended selling price for Client 1's home: $391,183.33
-Recommended selling price for Client 2's home: $189,123.53
-Recommended selling price for Client 3's home: $942,666.67</p>
+<p>Recommended selling price for Client 1's home: $391,183.33</p>
+<p>Recommended selling price for Client 2's home: $189,123.53</p>
+<p>Recommended selling price for Client 3's home: $942,666.67</p>
 <p>These prices seem reasonable given the values for the respective features.</p>
-<p>Client 3's home is nearly 3 standard deviations away from the Mean price for the dataset, but the total number of rooms is very large, the poverty level is exceptionally low, and it has great student-teacher ratios for nearby schools (all attributes that contribute to an increase in property value). Considering Client 3's recommended selling price is not above the Maximum price, this would not be an unreasonable list price.</p>
+<p>Client 3's home is nearly 3 standard deviations above the Mean price for the dataset. The total number of rooms is very large, the poverty level is exceptionally low, and it has great student-teacher ratios for nearby schools (all attributes that contribute to an increase in property value). Considering Client 3's recommended selling price is not above the Maximum price, this would not be an unreasonable list price.</p>
+<p>In contract to Client3, Client 2's home is more than 1 standard deviations below from the Mean price for the dataset. The total number of rooms is smaller than the other two clients, the poverty level is comparatively quite high, and it has a poor student-teacher ratio for nearby schools (all attributes that contribute to an decrease in property value).</p>
+<p>Client 1's home has attributes that are all more moderate than the other two clients, thus a selling price closer to the Mean price for the dataset ($454,342.94) seems appropriate.</p>
 
 </div>
 </div>
@@ -14146,7 +14148,7 @@ Range in prices: $37,132.67
 <p>The data collected in 1978 may no longer be relevant anymore. New construction in the last 40 years will have created new competing properties with more modern layouts that better fit the needs of 21st century life, lowering the property values of any homes in the dataset.</p>
 <p>The features present in the data are not sufficient to describe a home either. Valuable attributes are missing, such as the number of bathrooms, total acerage, existence of refurbished flooring or appliances, condition of the home, etc.</p>
 <p>The range in prices is $37,132.67, or nearly 10% of the value of the home. This model contains too few samples to allow a model to adequately capture the target variable; the model is underfitted.</p>
-<p>Data collected in an urban city like Boston would not be applicable in a rural city. Different attributes carry higher value in a rural city. Depending on the intended use of the land high value attributes may include: total acerage, quality of the soil, access to a reliable source of water for crop irrigation, the existence of a city sewage system or septic tank that requires cleaning, etc. The attributes may be of more importance than LSTAT, the percentage of homeowners in the neighborhood considered "lower class" (working poor).</p>
+<p>Data collected in an urban city like Boston would not be applicable in a rural city. Different attributes carry higher value in a rural city. Depending on the intended use of the land high value attributes may include: total acerage, quality of the soil, access to a reliable source of water for crop irrigation, the existence of a city sewage system or septic tank that requires cleaning, etc. These attributes may be of more importance than LSTAT, the percentage of homeowners in the neighborhood considered "lower class" (working poor).</p>
 
 </div>
 </div>
