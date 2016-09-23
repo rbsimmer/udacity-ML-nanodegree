@@ -11801,7 +11801,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
@@ -11853,14 +11853,15 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calculate number of students</span>
 <span class="n">n_students</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># TODO: Calculate number of features</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">n_labels</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># &quot;passed&quot;</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">n_labels</span> 
 
 <span class="c1"># TODO: Calculate passing students</span>
 <span class="n">n_passed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">[</span><span class="n">student_data</span><span class="o">.</span><span class="n">passed</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">])</span>
@@ -11890,7 +11891,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
 Graduation rate of the class: 67.09%
@@ -11916,7 +11917,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -11998,7 +11999,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12069,7 +12070,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
@@ -12151,19 +12152,24 @@ Testing set has 95 samples.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<h1>1) K-Nearest Neighbors<br></h1>
+<h1>1) AdaBoost (Boosting Ensemble Method)<br></h1>
 
-<pre><code>KNN has been successfully applied to Bioinformatics problems such as breast cancer diagnosis. [7] KNN is a relatively simple algorithm, making the results easy to interpret and communicate your results. Being a non-parametric method, it is often successful in classification situations where the decision boundary is very irregular. [9] As an instance based learning model, all of the data is stored in memory. Learning is slow, but querying is fast. The optimal choice of the value k is highly data-dependent: in general a larger k suppresses the effects of noise, but makes the classification boundaries less distinct. For high-dimensional parameter spaces, this method becomes less effective due to the so-called “curse of dimensionality”. [9] KNN makes no assumptions about the distribution of the data, or the shape of the decision boundary. 
+<pre><code>AdaBoost has been successfully applied to Computer Vision problems such as identifying Basketball players from video footage. [7] AdaBoost is a type of boosting method, one of the ensemble method class of algorithms. in boosting methods, base estimators are built sequentially and one tries to reduce the bias of the combined estimator. The motivation is to combine several weak models to produce a powerful ensemble. The core principle of AdaBoost is to fit a sequence of weak learners (i.e., models that are only slightly better than random guessing, such as small decision trees) on repeatedly modified versions of the data. The predictions from all of them are then combined through a weighted majority vote (or sum) to produce the final prediction. [10] The boosting is done sequentially and thus takes longer to train than other types of ensemble methods, such as averaging methods that can be done in parallel. Each sequential boosting increases the accuracy of the model. Like most ensemble methods, Adaboost is prone to overfitting. Adaboost is simple and easy to program, fast, versatile. There are not parameters to tune (except T). No prior knowledge is needed about the weak learner. From empirical evidence, AdaBoost is particularly vulnerable to uniform noise. [11]
 
 </code></pre>
 <h1>2) Support Vector Machines (SVM)<br></h1>
 
-<pre><code>SVMs have been successfully applied to Computer Vision problems such as facial expression classification. [5] SVMs are effective in high dimensional spaces and still effective in cases where number of dimensions is greater than the number of samples. It uses a subset of training points in the decision function (called support vectors), so it is also memory efficient. SVMs are versatile, using different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.[6] If the number of features is much greater than the number of samples, the method is likely to give poor performance. SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation.[6] SVMs also don't work well in large datasets, as the training time is cubic in relation to the size of the dataset. SVMs don't work very well when the data is not linearly separable. An SVM would be a good candidate for this problem, since the size of the dataset is not too large and the features are not independent of one another, making for data that linearly separable. 
+<pre><code>SVMs have been successfully applied to Computer Vision problems such as facial expression classification. [5] SVMs are effective in high dimensional spaces and still effective in cases where number of dimensions is greater than the number of samples. It uses a subset of training points in the decision function (called support vectors), so it is also memory efficient. SVMs are versatile, using different Kernel functions can be specified for the decision function. Common kernels are provided, but it is also possible to specify custom kernels.[6] If the number of features is much greater than the number of samples, the method is likely to give poor performance. SVMs do not directly provide probability estimates, these are calculated using an expensive five-fold cross-validation.[6] SVMs also don't work well in large datasets, as the training time is cubic in relation to the size of the dataset. SVMs don't work very well when the data is not linearly separable. 
 
 </code></pre>
-<h1>3) Random Forest (Ensemble Method)<br></h1>
+<h1>3) Random Forest (Averaging Ensemble Method)<br></h1>
 
-<pre><code>RF has been successfully applied to Bioinformatics problems such as diabetic retinopathy classification analyses. [4] RF is one of the most accurate and widely applicable supervised learning models. It is the closet thing to silver bullet when it comes to machine learning. RF is very fast to train, but quite slow to create predictions once trained. More accurate ensembles require more trees, which means using the model becomes slower. A random forest is a meta estimator that fits a number of decision tree classifiers on various sub-samples of the dataset and use averaging to improve the predictive accuracy and control over-fitting. [8]
+<pre><code>RF has been successfully applied to Bioinformatics problems such as diabetic retinopathy classification analyses. [4] RF is a type of avergaing method, one of the ensemble method class of algorithms. In averaging methods, the driving principle is to build several estimators independently and then to average their predictions. On average, the combined estimator is usually better than any of the single base estimator because its variance is reduced. [10] RF is one of the most accurate and widely applicable supervised learning models. It is the closet thing to silver bullet when it comes to machine learning. RF is very fast to train, but quite slow to create predictions once trained. It runs efficiently on large databases. It can handle thousands of input variables without variable deletion. It gives estimates of what variables are important in the classification. It has methods for balancing error in class population unbalanced data sets. Random forests have been observed to overfit for some datasets with noisy classification/regression tasks. Unlike decision trees, the classifications made by random forests are difficult for humans to interpret. [9] More accurate ensembles require more trees, which means using the model becomes slower. A random forest is a meta estimator that fits a number of decision tree classifiers on various sub-samples of the dataset and use averaging to improve the predictive accuracy and control over-fitting. [8] 
+
+
+Our data is dense and pre-processed to be all numerical, using dummy variables to obscure categorical values. The data set is objectively small in size (395), with a proportionally large amount of features (30). The features themselves are not independent of one another, i.e. the student's parent's occupation has a direct correlation to the household income and thus amount of available resources to apply towards the child's education. 
+SVMs and ensemble methods such as Random Forest and AdaBoost are good candidates for this kind of problem. These algorithms are less suspectible to the curse of dimensionality that other algorithms suffer from, a possible problem considering the amount of features in our dataset. SVMs do not perform well on large datasets, but that is not an issue here. Noisy data is a problem for ensemble methods, as they tend to overfit in that case. However, our features our interdepent, making for data that is linearly separable and thus less noisy.  These three algorithms typically produce some of the highest accuracy rates in classification problems. Without any of the typical pitfalls to lower their accuracy, these algorithms should performance very well. 
+
 
 </code></pre>
 <p><strong> References: </strong></p>
@@ -12179,12 +12185,17 @@ Markham, Kevin. "Comparing Supervised Learning Algorithms." Data School. N.p., 2
 J. Ghent and J. McDonald, "Facial Expression Classification using a One-Against-All Support Vector Machine", proceedings of the Irish Machine Vision and Image Processing Conference, Aug 2005.</p>
 <p>6) <a href="http://scikit-learn.org/stable/modules/svm.html#svm">http://scikit-learn.org/stable/modules/svm.html#svm</a>
 Scikit-Learn documentation for Support Vector Machines</p>
-<p>7) <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2243774/">http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2243774/</a>
-Sarkar, Manish, and Tze-Yun Leong. "Application of K-Nearest Neighbors Algorithm on Breast Cancer Diagnosis Problem." US National Library of Medicine. National Institute of Health (2000)</p>
+<p>7) <a href="http://www.uni-obuda.hu/journal/Markoski_Ivankovic_Ratgeber_Pecev_Glusac_57.pdf">http://www.uni-obuda.hu/journal/Markoski_Ivankovic_Ratgeber_Pecev_Glusac_57.pdf</a>
+Branko Markoski, Zdravko Ivanković, Ladislav Ratgeber, Predrag Pecev, Dragana Glušac, "Application of AdaBoost Algorithm in
+Basketball Player Detection", Acta Polytechnica Hungarica, Vol. 12, No. 1, 2015</p>
 <p>8) <a href="http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier">http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier</a>
 Scikit-Learn documentation for Random Forest Classifier</p>
-<p>9) <a href="http://scikit-learn.org/stable/modules/neighbors.html">http://scikit-learn.org/stable/modules/neighbors.html</a>
-Scikit-Learn documentation for Nearest Neighbor</p>
+<p>9) <a href="http://rstudio-pubs-static.s3.amazonaws.com/4239_fcb292ade17648b097a9806fbe026e74.html">http://rstudio-pubs-static.s3.amazonaws.com/4239_fcb292ade17648b097a9806fbe026e74.html</a>
+Zhao, "Random Forest"</p>
+<p>10) <a href="http://scikit-learn.org/stable/modules/ensemble.html">http://scikit-learn.org/stable/modules/ensemble.html</a>
+Scikit-Learn documentation for Ensemble Methods</p>
+<p>11) <a href="http://math.mit.edu/~rothvoss/18.304.3PM/Presentations/1-Eric-Boosting304FinalRpdf.pdf">http://math.mit.edu/~rothvoss/18.304.3PM/Presentations/1-Eric-Boosting304FinalRpdf.pdf</a>
+Eric Emer, "Boosting (AdaBoost Algorithm)", MIT</p>
 
 </div>
 </div>
@@ -12209,7 +12220,7 @@ Scikit-Learn documentation for Nearest Neighbor</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12282,48 +12293,26 @@ Scikit-Learn documentation for Nearest Neighbor</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
 <span class="c1"># from sklearn import model_A</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">AdaBoostClassifier</span>
 <span class="c1"># from sklearn import model_B</span>
 <span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
 <span class="c1"># from skearln import model_C</span>
 <span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
 
 <span class="c1"># TODO: Initialize the three models</span>
-<span class="n">clf_A</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
-<span class="n">clf_B</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">clf_C</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">clf_A</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+<span class="n">clf_B</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+<span class="n">clf_C</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
 
-<span class="c1"># TODO: Set up the training set sizes</span>
-<span class="n">X_train_100</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
-<span class="n">y_train_100</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
-
-<span class="n">X_train_200</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span>
-<span class="n">y_train_200</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[:</span><span class="mi">200</span><span class="p">]</span>
-
-<span class="n">X_train_300</span> <span class="o">=</span> <span class="n">X_train</span>
-<span class="n">y_train_300</span> <span class="o">=</span> <span class="n">y_train</span>
-
-<span class="c1"># TODO: Execute the &#39;train_predict&#39; function for each classifier and each training set size</span>
-<span class="c1"># train_predict(clf, X_train, y_train, X_test, y_test)</span>
-
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_B</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
-
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_100</span><span class="p">,</span> <span class="n">y_train_100</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_200</span><span class="p">,</span> <span class="n">y_train_200</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-<span class="n">train_predict</span><span class="p">(</span><span class="n">clf_C</span><span class="p">,</span> <span class="n">X_train_300</span><span class="p">,</span> <span class="n">y_train_300</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">clf</span> <span class="ow">in</span> <span class="p">[</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">clf_B</span><span class="p">,</span> <span class="n">clf_C</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">]:</span>
+        <span class="n">train_predict</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">[:</span><span class="n">size</span><span class="p">],</span> <span class="n">y_train</span><span class="p">[:</span><span class="n">size</span><span class="p">],</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="k">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 </pre></div>
 
 </div>
@@ -12336,64 +12325,66 @@ Scikit-Learn documentation for Nearest Neighbor</p>
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Training a KNeighborsClassifier using a training set size of 100. . .
-Trained model in 0.0040 seconds
-Made predictions in 0.0050 seconds.
-F1 score for training set: 0.7972.
-Made predictions in 0.0070 seconds.
-F1 score for test set: 0.7068.
-Training a KNeighborsClassifier using a training set size of 200. . .
-Trained model in 0.0050 seconds
-Made predictions in 0.0200 seconds.
-F1 score for training set: 0.8571.
-Made predictions in 0.0110 seconds.
-F1 score for test set: 0.7121.
-Training a KNeighborsClassifier using a training set size of 300. . .
-Trained model in 0.0060 seconds
-Made predictions in 0.0360 seconds.
-F1 score for training set: 0.8722.
-Made predictions in 0.0110 seconds.
-F1 score for test set: 0.7482.
+<pre>Training a AdaBoostClassifier using a training set size of 100. . .
+Trained model in 0.5160 seconds
+Made predictions in 0.0340 seconds.
+F1 score for training set: 0.9538.
+Made predictions in 0.0310 seconds.
+F1 score for test set: 0.7200.
+Training a AdaBoostClassifier using a training set size of 200. . .
+Trained model in 0.6390 seconds
+Made predictions in 0.0310 seconds.
+F1 score for training set: 0.8826.
+Made predictions in 0.0150 seconds.
+F1 score for test set: 0.8058.
+Training a AdaBoostClassifier using a training set size of 300. . .
+Trained model in 0.4940 seconds
+Made predictions in 0.0330 seconds.
+F1 score for training set: 0.8688.
+Made predictions in 0.0220 seconds.
+F1 score for test set: 0.7794.
 
 
 Training a SVC using a training set size of 100. . .
-Trained model in 0.0060 seconds
-Made predictions in 0.0040 seconds.
+Trained model in 0.0400 seconds
+Made predictions in 0.0160 seconds.
 F1 score for training set: 0.8591.
-Made predictions in 0.0030 seconds.
+Made predictions in 0.0000 seconds.
 F1 score for test set: 0.7838.
 Training a SVC using a training set size of 200. . .
-Trained model in 0.0180 seconds
-Made predictions in 0.0110 seconds.
+Trained model in 0.0150 seconds
+Made predictions in 0.0160 seconds.
 F1 score for training set: 0.8693.
-Made predictions in 0.0060 seconds.
+Made predictions in 0.0000 seconds.
 F1 score for test set: 0.7755.
 Training a SVC using a training set size of 300. . .
-Trained model in 0.0430 seconds
+Trained model in 0.0220 seconds
 Made predictions in 0.0290 seconds.
 F1 score for training set: 0.8692.
-Made predictions in 0.0400 seconds.
+Made predictions in 0.0080 seconds.
 F1 score for test set: 0.7586.
 
 
 Training a RandomForestClassifier using a training set size of 100. . .
-Trained model in 0.1470 seconds
-Made predictions in 0.0070 seconds.
-F1 score for training set: 0.9841.
-Made predictions in 0.0060 seconds.
-F1 score for test set: 0.7119.
+Trained model in 0.1040 seconds
+Made predictions in 0.0000 seconds.
+F1 score for training set: 0.9844.
+Made predictions in 0.0000 seconds.
+F1 score for test set: 0.6822.
 Training a RandomForestClassifier using a training set size of 200. . .
-Trained model in 0.1860 seconds
-Made predictions in 0.0080 seconds.
+Trained model in 0.1160 seconds
+Made predictions in 0.0060 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0080 seconds.
-F1 score for test set: 0.7761.
+Made predictions in 0.0070 seconds.
+F1 score for test set: 0.7200.
 Training a RandomForestClassifier using a training set size of 300. . .
-Trained model in 0.1750 seconds
-Made predictions in 0.0090 seconds.
-F1 score for training set: 0.9976.
-Made predictions in 0.0050 seconds.
-F1 score for test set: 0.7344.
+Trained model in 0.1040 seconds
+Made predictions in 0.0000 seconds.
+F1 score for training set: 0.9903.
+Made predictions in 0.0150 seconds.
+F1 score for test set: 0.7121.
+
+
 </pre>
 </div>
 </div>
@@ -12417,7 +12408,7 @@ F1 score for test set: 0.7344.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong> Classifer 1 - KNN</strong></p>
+<p><strong> Classifer 1 - Ada</strong></p>
 <table>
 <thead><tr>
 <th style="text-align:center">Training Set Size</th>
@@ -12430,24 +12421,24 @@ F1 score for test set: 0.7344.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0060 s</td>
-<td style="text-align:center">0.0080 s</td>
-<td style="text-align:center">0.7972</td>
-<td style="text-align:center">0.7068</td>
+<td style="text-align:center">0.5160 s</td>
+<td style="text-align:center">0.0310 s</td>
+<td style="text-align:center">0.9538</td>
+<td style="text-align:center">0.7200</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0050 s</td>
-<td style="text-align:center">0.0120 s</td>
-<td style="text-align:center">0.8571</td>
-<td style="text-align:center">0.7121</td>
+<td style="text-align:center">0.6390 s</td>
+<td style="text-align:center">0.0150 s</td>
+<td style="text-align:center">0.8826</td>
+<td style="text-align:center">0.8058</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0130 s</td>
-<td style="text-align:center">0.0170 s</td>
-<td style="text-align:center">0.8722</td>
-<td style="text-align:center">0.7482</td>
+<td style="text-align:center">0.4940 s</td>
+<td style="text-align:center">0.0220 s</td>
+<td style="text-align:center">0.8688</td>
+<td style="text-align:center">0.7794</td>
 </tr>
 </tbody>
 </table>
@@ -12464,22 +12455,22 @@ F1 score for test set: 0.7344.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0080 s</td>
-<td style="text-align:center">0.0040 s</td>
+<td style="text-align:center">0.0400 s</td>
+<td style="text-align:center">0.0000 s</td>
 <td style="text-align:center">0.8591</td>
 <td style="text-align:center">0.7838</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.0200 s</td>
-<td style="text-align:center">0.0080 s</td>
+<td style="text-align:center">0.0150 s</td>
+<td style="text-align:center">0.0000 s</td>
 <td style="text-align:center">0.8693</td>
 <td style="text-align:center">0.7755</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.0500 s</td>
-<td style="text-align:center">0.0070 s</td>
+<td style="text-align:center">0.0220 s</td>
+<td style="text-align:center">0.0080 s</td>
 <td style="text-align:center">0.8692</td>
 <td style="text-align:center">0.7586</td>
 </tr>
@@ -12498,24 +12489,24 @@ F1 score for test set: 0.7344.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.1280 s</td>
-<td style="text-align:center">0.0060 s</td>
-<td style="text-align:center">0.9841</td>
-<td style="text-align:center">0.7119</td>
+<td style="text-align:center">0.1040 s</td>
+<td style="text-align:center">0.0000 s</td>
+<td style="text-align:center">0.9844</td>
+<td style="text-align:center">0.6822</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">0.1040 s</td>
-<td style="text-align:center">0.0040 s</td>
+<td style="text-align:center">0.1160 s</td>
+<td style="text-align:center">0.0070 s</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.7761</td>
+<td style="text-align:center">0.7200</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">0.1260 s</td>
-<td style="text-align:center">0.0170 s</td>
-<td style="text-align:center">0.9976</td>
-<td style="text-align:center">0.7344</td>
+<td style="text-align:center">0.1040 s</td>
+<td style="text-align:center">0.0150 s</td>
+<td style="text-align:center">0.9903</td>
+<td style="text-align:center">0.7121</td>
 </tr>
 </tbody>
 </table>
@@ -12548,9 +12539,9 @@ F1 score for test set: 0.7344.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong>  The Best Model for the dataset is a <u>Support Vector Classifier (SVC)</u></p>
-<p>In a dataset with 300 data points and 30 features, dimenstionality may be a concern. KNN is especially susceptible to the curse of dimensionality. Fortunately, SVCs are effective in high dimensional spaces, even where the number of dimensions is greater than the number of samples. The SVC nearly had the highest F1 scores on all the test sets, only beaten narrowly by the Random Forest Classifier for the test set of size 200.</p>
-<p>The SVC algorithm was relatively fast at both training and prediction. RF was fast to query, but much slower to train than the other algorithms on this dataset. KNN is an instance based learning algorithm and therefore stores all data in memory. SVCs use a subset of training points in the decision function, so it is also memory efficient. Using a memory efficient algorithm, such as SVC, will result in higher performance and less hardware resources will be required to process the data, resulting in a reduction of operating cost.</p>
+<p><strong>Answer: </strong>  The Best Model for the dataset is the ensemble method - <u>AdaBoost</u></p>
+<p>AdaBoost is noteably slower to train, but the time spent during training produces an overall more accurate prediction. However, querying was relatively fast. Random Forest is also slow to train, but not as slow as AdaBoost, since RF handles boosting in parallel, taking the average of all results. Random Forest was also fast to query. The SVC algorithm was the fastest at both training and prediction.</p>
+<p>The AdaBoost algorithm nearly had the highest F1 scores on all the test sets, only beaten narrowly by the SVCClassifier for the smallest test set, of size 100. Ensemble Methods tend to perform better at scale, assuming we want to apply our model to more than just 395 students. AdaBoost performed better on the given dataset and it can be expected to outperform an SVM on larger datasets as well. SVMs also don't work well in large datasets, as the training time is cubic in relation to the size of the dataset. Given the predictive accuracy and its ability to handle large amounts of data, AdaBoost is the best model for this problem.</p>
 
 </div>
 </div>
@@ -12570,9 +12561,8 @@ F1 score for test set: 0.7344.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong>
-Intuitively, a good dividing line is acheived by the creating the greatest distance between training-data of different classes. In doing so we are making the least commitment to the data, lowering the generalization error and thus avoiding overfitting. This is exactly how SVMs work, by defining a linear separator (or hyperplane) that maximizing these margins between data of different classifications. Quadratic programming is a special type of mathematical optimization problem used by the SVM to find these maximum margins.</p>
-<p>The training-data nearest to the margins are more relevant in defining the hyperplane. This is the subset of training points the SVM uses in the decision function, called support vectors. Since the SVM uses a subset of the training data it is a memory efficient algorithm. SVMs also use different "kernels" to perform feature transformations on the data in order to find separations in higher dimensional space, thus SVMs are less susceptible to the curse of dimensionality than other algorithms. SVMs use five-fold cross-validation to provide probability estimates.</p>
+<p><strong>Answer: </strong></p>
+<p>AdaBoost in an ensemble method. Ensemble methods work by combining the results of multiple algorithms, to make a overall more accurate prediction, less susceptible to bias. A typical example of a base estimator is a simple decision tree, with branching logic resulting from a series of conditional statements. The more trees used, the more accurate the prediction, but the longer it takes to train the model. AdaBoost operates by sequentially improving upon the predictions of the previous estimator, modifying them slightly with each iteration. The predictions from all base estimators are combined through a majoirty vote to produce a final prediction.</p>
 
 </div>
 </div>
@@ -12603,31 +12593,42 @@ Intuitively, a good dividing line is acheived by the creating the greatest dista
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">StratifiedShuffleSplit</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
 <span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 
+<span class="c1"># Define a random state to seed your algorithms</span>
+<span class="n">ran_state</span> <span class="o">=</span> <span class="mi">256</span>
+
 <span class="c1"># TODO: Create the parameters list you wish to tune</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="s1">&#39;kernel&#39;</span><span class="p">:[</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="s1">&#39;linear&#39;</span><span class="p">],</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">]</span> <span class="p">}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span> <span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+              <span class="s1">&#39;algorithm&#39;</span>    <span class="p">:</span> <span class="p">[</span><span class="s1">&#39;SAMME&#39;</span><span class="p">,</span> <span class="s1">&#39;SAMME.R&#39;</span><span class="p">],</span>
+              <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">,</span> <span class="mf">0.70</span><span class="p">]}</span>
 
 <span class="c1"># TODO: Initialize the classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">ran_state</span><span class="p">)</span>
+
+<span class="c1"># Create the Stratified Shuffle Split object</span>
+<span class="n">sss</span> <span class="o">=</span> <span class="n">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.24</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">ran_state</span><span class="p">)</span>
 
 <span class="c1"># TODO: Make an f1 scoring function using &#39;make_scorer&#39;</span>
 <span class="n">f1_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span><span class="p">,</span><span class="n">pos_label</span><span class="o">=</span><span class="s1">&#39;yes&#39;</span><span class="p">)</span>
 
 <span class="c1"># TODO: Perform grid search on the classifier using the f1_scorer as the scoring method</span>
-<span class="n">grid_obj</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">f1_scorer</span><span class="p">)</span>
+<span class="n">grid_obj</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="n">f1_scorer</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">sss</span><span class="p">)</span>
 
 <span class="c1"># TODO: Fit the grid search object to the training data and find the optimal parameters</span>
-<span class="n">grid_obj</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">grid_obj</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
 <span class="c1"># Get the estimator</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">grid_obj</span><span class="o">.</span><span class="n">best_estimator_</span>
+
+<span class="c1"># Print the parameters</span>
+<span class="k">print</span> <span class="n">clf</span><span class="o">.</span><span class="n">get_params</span><span class="p">(),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 
 <span class="c1"># Report the final F1 score for training and testing after parameter tuning</span>
 <span class="k">print</span> <span class="s2">&quot;Tuned model has a training F1 score of {:.4f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">predict_labels</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
@@ -12644,10 +12645,12 @@ Intuitively, a good dividing line is acheived by the creating the greatest dista
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Made predictions in 0.0180 seconds.
-Tuned model has a training F1 score of 0.8434.
-Made predictions in 0.0060 seconds.
-Tuned model has a testing F1 score of 0.7862.
+<pre>{&#39;n_estimators&#39;: 10, &#39;base_estimator&#39;: None, &#39;random_state&#39;: 256, &#39;learning_rate&#39;: 0.6, &#39;algorithm&#39;: &#39;SAMME.R&#39;} 
+
+Made predictions in 0.0000 seconds.
+Tuned model has a training F1 score of 0.8340.
+Made predictions in 0.0000 seconds.
+Tuned model has a testing F1 score of 0.7945.
 </pre>
 </div>
 </div>
@@ -12672,8 +12675,8 @@ Tuned model has a testing F1 score of 0.7862.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-Final F1 score = 0.7862
-This is noteably better than the untuned score of 0.7586</p>
+Final F1 score on test data, for training set  of size 300  =  <u>0.7945</u></p>
+<p>This is noteably better than the untuned score of 0.7794</p>
 
 </div>
 </div>
