@@ -11782,7 +11782,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<<<<<<< b70e891ab340cc9a709726bacfea54c0ed1d66cb
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
+=======
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+>>>>>>> Analysis of K-Means Clusting algorithm
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -11837,7 +11841,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<<<<<<< b70e891ab340cc9a709726bacfea54c0ed1d66cb
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
+=======
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+>>>>>>> Analysis of K-Means Clusting algorithm
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display a description of the dataset</span>
@@ -11964,7 +11972,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
+<<<<<<< b70e891ab340cc9a709726bacfea54c0ed1d66cb
 <div class="prompt input_prompt">In&nbsp;[25]:</div>
+=======
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+>>>>>>> Analysis of K-Means Clusting algorithm
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Select three indices of your choice you wish to sample from the dataset</span>
@@ -11974,6 +11986,7 @@ div#notebook {
 <span class="n">samples</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 <span class="k">print</span> <span class="s2">&quot;Chosen samples of wholesale customers dataset:&quot;</span>
 <span class="n">display</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+<<<<<<< b70e891ab340cc9a709726bacfea54c0ed1d66cb
 
 <span class="c1"># Analyze IQR of data set</span>
 <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -11981,6 +11994,8 @@ div#notebook {
     <span class="n">Q3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">feature</span><span class="p">],</span><span class="mi">75</span><span class="p">)</span>
     <span class="k">print</span> <span class="s2">&quot;Q1 of feature &#39;{0}&#39; for the whole data set = {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">Q1</span><span class="p">)</span>
     <span class="k">print</span> <span class="s2">&quot;Q3 of feature &#39;{0}&#39; for the whole data set = {1}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature</span><span class="p">,</span> <span class="n">Q3</span><span class="p">)</span>
+=======
+>>>>>>> Analysis of K-Means Clusting algorithm
 </pre></div>
 
 </div>
@@ -12049,6 +12064,7 @@ div#notebook {
 
 </div>
 
+<<<<<<< b70e891ab340cc9a709726bacfea54c0ed1d66cb
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Q1 of feature &#39;Fresh&#39; for the whole data set = 3127.75
@@ -12073,6 +12089,8 @@ Q3 of feature &#39;Delicatessen&#39; for the whole data set = 1820.25
 </div>
 </div>
 
+=======
+>>>>>>> Analysis of K-Means Clusting algorithm
 </div>
 </div>
 
@@ -12094,10 +12112,17 @@ Q3 of feature &#39;Delicatessen&#39; for the whole data set = 1820.25
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<<<<<<< b70e891ab340cc9a709726bacfea54c0ed1d66cb
 <p><strong>Answer:</strong></p>
 <p>Customer 0:   The client's spending on product 'Frozen' is below the 1st quartile for the whole data set. This could be a retail Market.</p>
 <p>Customer 120: The client's spending on product 'Detergents_Paper' is below the 1st quartile for the whole data set. This could be a Restaurant.</p>
 <p>Customer 367: The client's spending on all products EXCEPT 'Fresh' &amp; 'Frozen' are below the 1st quartile for the whole data set. This could be a Cafe.</p>
+=======
+<p><strong>Answer:</strong>
+Customer 0: With large quantities of all products except frozen items being purchased, this could be a retail Market
+Customer 120: With large quantities of all products except detergents/paper items being purchased, this could be a Restaurant
+Customer 367: With relatively large amounts of frozen and fresh items compared to the other features, this could be a Cafe</p>
+>>>>>>> Analysis of K-Means Clusting algorithm
 
 </div>
 </div>
