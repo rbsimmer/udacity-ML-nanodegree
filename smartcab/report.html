@@ -11813,7 +11813,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import the visualization code</span>
@@ -11953,7 +11953,7 @@ The smartcab does not move at all during the simulation when running the default
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Load the &#39;sim_no-learning&#39; log file from the initial simulation results</span>
@@ -13049,6 +13049,21 @@ AElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Answer:</strong></p>
+<p>The driving agent made a bad decision 40% of the time. Those bad decisions result in an accident  14% of the time. Major accidents occur 9% of the time and minor accidents occur 5% of the time.</p>
+<p>Given that the agent is driving randomly and there are 4 possible choices for actions to take, the reliability rate of 30% makes sense. Approximately 1 out of every 4 decisions are bad, or 25%.</p>
+<p>The average reward per trial is about -6, suggesting that the agent was penalized heavily for its actions.</p>
+<p>As the number of trials increase, the outcomt of results does not change significantly.</p>
+<p>This smartcab would not be considered safe of reliable for its passengers. Over the 10 test trials, the average safety and reliability rating for the agent was 'F' for each.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <hr>
 <h2 id="Inform-the-Driving-Agent">Inform the Driving Agent<a class="anchor-link" href="#Inform-the-Driving-Agent">&#182;</a></h2><p>The second step to creating an optimized Q-learning driving agent is defining a set of states that the agent can occupy in the environment. Depending on the input, sensory data, and additional variables available to the driving agent, a set of states can be defined for the agent so that it can eventually <em>learn</em> what action it should take when occupying a state. The condition of <code>'if state then action'</code> for each state is called a <strong>policy</strong>, and is ultimately what the driving agent is expected to learn. Without defining states, the driving agent would never understand which action is most optimal -- or even what environmental variables and conditions it cares about!</p>
 
@@ -13092,6 +13107,12 @@ AElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
+<p>Safety:</p>
+<p>Intersection inputs are the most relevant features for learning safety. These inputs include the color of the intersection light, the oncoming traffic status, and the intended direction of travel for a vehicle to the Smartcab's right and left. These features are important to predict whether the chosen action for the agent will result in an accident or a violation.</p>
+<p>Efficiency:</p>
+<p>Waypoint is the most relevant features for learning efficiency. This feature is important for minimizing the distance traveled and thus reaching the destination within the enforced deadline.</p>
+<p>If we assume that under no circumstance is causing an accident acceptable, then the remaining number of turns should not cause the agent to drive any less safe and thus deadline is not appropriate for learning safety. The waypoint indicates the most efficient direction the car should be driving. Knowing when the time will expire does not change the waypoint and thus cannot increase efficiency.</p>
+<p>However, if we assume that intentional traffic violations are acceptable if we are in danger of not meeting our deadline  and that performing such violations will allow us to reach our destination on time, then the 'deadline' feature would be relevant for increased safety and efficiency. In the instance in which we are making tradeoffs between safety and efficiency, another important metric we would possibly need to consider is the frequency with which violations result in accidents.</p>
 
 </div>
 </div>
