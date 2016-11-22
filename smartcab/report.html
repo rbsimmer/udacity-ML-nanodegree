@@ -13108,11 +13108,11 @@ AElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <p>Safety:</p>
-<p>Intersection inputs are the most relevant features for learning safety. These inputs include the color of the intersection light, the oncoming traffic status, and the intended direction of travel for a vehicle to the Smartcab's right and left. These features are important to predict whether the chosen action for the agent will result in an accident or a violation.</p>
+<p>Intersection inputs are the most relevant features for learning safety. These inputs include the color of the intersection light, the oncoming traffic status. These features are important to predict whether the chosen action for the agent will result in an accident or a violation.</p>
 <p>Efficiency:</p>
 <p>Waypoint is the most relevant features for learning efficiency. This feature is important for minimizing the distance traveled and thus reaching the destination within the enforced deadline.</p>
-<p>If we assume that under no circumstance is causing an accident acceptable, then the remaining number of turns should not cause the agent to drive any less safe and thus deadline is not appropriate for learning safety. The waypoint indicates the most efficient direction the car should be driving. Knowing when the time will expire does not change the waypoint and thus cannot increase efficiency.</p>
-<p>However, if we assume that intentional traffic violations are acceptable if we are in danger of not meeting our deadline  and that performing such violations will allow us to reach our destination on time, then the 'deadline' feature would be relevant for increased safety and efficiency. In the instance in which we are making tradeoffs between safety and efficiency, another important metric we would possibly need to consider is the frequency with which violations result in accidents.</p>
+<p>If we assume that under no circumstance is causing an accident acceptable, then the remaining number of turns should not cause the agent to drive any less safe and thus deadline is not appropriate for learning safety. The waypoint indicates the most efficient direction the car should be driving. Knowing when the time will expire does not change the waypoint and thus cannot increase efficiency. Also, since deadline is decreasing with each action it is a dynamic variable. Including this in the definition of state will dramatically increase the state space and the agent will take too long to train, preventing it from acting.</p>
+<p>If we assume that all other vehicles in the simulation follow the same traffic laws then we do not need to consider the intended direction of travel for a vehicle to the smartcab's left and right. Therefore, not including these inputs in our definition of state will not decrease our safety or efficiency rating, but it will reduce the feature space, thus improving the rate and accuracy of the agent's learning.</p>
 
 </div>
 </div>
@@ -16592,6 +16592,42 @@ mZmZmZlZA/0fdbrIJFKBEBcAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
+<p>The definition of state includes the waypoint, the color of the light at the intersection, and the intended direction of travel for a vehicle across the intersection from the Smartcab. The optimal policy would avoid traffic accidents and violations, while moving in the direction of the goal whenever possible.</p>
+<p>A few examples of states using an optimal policy follow:</p>
+<p>{ "{'waypoint':'left','light':'green','oncoming':None}": {
+    'forward': 1.0,
+    None: -1.0,
+    'right': 0.5,
+    'left': 2.0},</p>
+<p>"{'waypoint':'forward','light':'red','oncoming':'right'}": {
+    'forward': -2.0,
+    None: 2.0,
+    'right': 0.5,
+    'left': -2.0},</p>
+<p>"{'waypoint':'right','light':'red','oncoming':'left'}": {
+    'forward': -2.0,
+    None: 2.0,
+    'right': -1.0,
+    'left': -2.0}}</p>
+<p>Output from 'sim_improved-learning.txt':</p>
+<p>('left', 'green', None)
+ -- forward : 131.87
+ -- None : 97.50
+ -- right : 132.57
+ -- left : 153.08</p>
+<p>('forward', 'red', 'right')
+ -- forward : -9.61
+ -- None : 29.89
+ -- right : 14.37
+ -- left : -25.83</p>
+<p>('right', 'red', 'left')
+ -- forward : 74.32
+ -- None : 125.53
+ -- right : 92.60
+ -- left : 67.85</p>
+<p>For each state that has been recorded from the simulation, the action with the highest value is correct for each given state.</p>
+<p>I was surprised to see in the state '('right', 'red', 'left')' that actions other than 'None' and 'right' were assigned positive Q-values. This would seem to indicate that the agent is inclined to run red lights and that the reward for going forward through an intersection with a red light is nearly the same as making a right turn on red. One is always a traffic violation and the other is acceptable depending on traffic conditions.</p>
+<p>However, this is the correct policy because the action with the highest value is correct for the state, None. The action of turning right on the red light, which happens to be the direction of the next waypoint, has the second highest value.</p>
 
 </div>
 </div>
@@ -16622,7 +16658,9 @@ mZmZmZlZA/0fdbrIJFKBEBcAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong></p>
+<p><strong>Answer:</strong>
+If the smartcab were able to consider future rewards then it may be inclined to take the most efficient actions, even if those actions result in violations or accidents. The ends would justify the means.</p>
+<p>The deadline is another reason you would not want to include future rewards. Since we are not including the deadline in our definition of state, including future rewards does not make sense for actions beyond the deadline, or after reaching the goal.</p>
 
 </div>
 </div>
