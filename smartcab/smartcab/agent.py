@@ -22,7 +22,7 @@ class LearningAgent(Agent):
         
         # Set any additional class parameters as needed
         self.n_trials = 1       # Trial number
-        self.decay_rate = 0.005   # Rate of decay of the Q-learning function
+        self.decay_rate = 0.006   # Rate of decay of the Q-learning function
 
     def reset(self, destination=None, testing=False):
         """ The reset function is called at the beginning of each trial.
@@ -80,12 +80,13 @@ class LearningAgent(Agent):
         # When learning, check if the 'state' is not in the Q-table
         # If it is not, create a new dictionary for that state
         #   Then, for each action available, set the initial Q-value to 0.0
-        state_key = str(state)
-
-        if not state_key in self.Q:
-            self.Q[state_key] = {}
-            for a in self.valid_actions:
-                self.Q[state_key][a] = 0.0           
+        
+        if self.learning == True:
+            state_key = str(state)
+            if not state_key in self.Q:
+                self.Q[state_key] = {}
+                for a in self.valid_actions:
+                    self.Q[state_key][a] = 0.0           
 
         return 
 
@@ -103,10 +104,20 @@ class LearningAgent(Agent):
         # When learning, choose a random action with 'epsilon' probability
         #   Otherwise, choose an action with the highest Q-value for the current state        
         if self.learning == True:
-            if choice([True,False], 1, p=[1-self.epsilon, self.epsilon]):
-                for k,v in self.Q[str(state)].iteritems():
-                    if v == self.get_maxQ(state):
-                        action = k
+            maxQ = self.get_maxQ(state)
+            n_maxQ = sum(1 for v in self.Q[str(state)].values() if v == maxQ)
+
+            if n_maxQ > 1:
+                maxQ_actions = []
+                for k,v in self.Q[str(state)].iteritems():      
+                    if v == maxQ:
+                        maxQ_actions.append(k)            
+                action = choice(maxQ_actions)
+            else:    
+                if choice([True,False], 1, p=[1-self.epsilon, self.epsilon]):
+                    for k,v in self.Q[str(state)].iteritems():
+                        if v == maxQ:
+                            action = k
  
         return action
 
@@ -118,7 +129,8 @@ class LearningAgent(Agent):
 
         # When learning, implement the value iteration update rule
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
-        self.Q[str(state)][action] = (1-self.alpha)*self.Q[str(state)][action] + self.alpha*(reward + self.get_maxQ(state))
+        if self.learning == True:
+            self.Q[str(state)][action] = (1-self.alpha)*self.Q[str(state)][action] + self.alpha*(reward)
 
         return
 
@@ -177,7 +189,7 @@ def run():
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05 
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(tolerance=0.1,n_test=50)
+    sim.run(tolerance=0.05,n_test=50)
 
 
 if __name__ == '__main__':
