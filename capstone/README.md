@@ -10,20 +10,42 @@ This project requires **Python 2.7** and the following Python libraries installe
 - [Pandas](http://pandas.pydata.org/)
 - [matplotlib](http://matplotlib.org/)
 - [scikit-learn](http://scikit-learn.org/stable/)
+- [TensorFlow] (https://www.tensorflow.org/)
 
 You will also need to have software installed to run and execute a [Jupyter Notebook](http://ipython.org/notebook.html)
 
 If you do not have Python installed yet, it is highly recommended that you install the [Anaconda](http://continuum.io/downloads) distribution of Python, which already has most of the above packages and more included. Make sure that you select the Python 2.7 installer and not the Python 3.x installer.
 
+**Note:** TensorFlow is not compatible with Python 2.7 running on a Windows operating system. 
+
+I was successful in running a virtual machine in Oracle Virtualbox 
+
 ### Code
 
 ### Run
 
+There is a package called `nb_conda` that helps manage your anaconda kernels. However, when you launch Jupyter make sure that you have jupyter installed inside your conda environment and that you are launching Jupyter from that activated environment.
+
+- Activate your conda environment that has Tensorflow installed. You can check by doing conda list. If Tensorflow is not installed within your environment then do so.
+- Install jupyter and nb_conda if you haven't already.
+- From your activated environment, run jupyter notebook.
+- You should now be running in the correct kernel. You should see a kernel named Python [conda env:namehere] in the top right. You may also have a choice of kernels thanks to nb_conda if installed.
+
+In a terminal or command window, navigate to the top-level project directory `capstone/` (that contains this README) and run one of the following commands:
+
+```bash
+ipython notebook capstone.ipynb
+```  
+or
+```bash
+jupyter notebook capstone.ipynb
+```
+
+This will open the Jupyter Notebook software and project file in your browser.
+
 ### Data
 
 The CIFAR-10 dataset consists of 60,000 images: 50,000 training images and 10,000 test images. This dataset and more can be found here [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html).
-
-I will describe the layout of the Python 2 version of the dataset. 
 
 The archive contains the files data_batch_1, data_batch_2, ..., data_batch_5, as well as test_batch. Each of these files is a Python "pickled" object produced with `cPickle`. Here is a python2 routine which will open such a file and return a dictionary:
 
